@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <style>
+      @media screen and (min-width: 1024px) {
+        .container {
+          max-width: 576px;
+        }
+      }
+      @media screen and (min-width: 1216px) {
+        .container {
+          max-width: 625px;
+        }
+      }
+      @media screen and (min-width: 1408px) {
+        .container {
+          max-width: 768px;
+        }
+      }
+    </style>
+  </head>
+  <body class="container ">
+    <div
+      class="jumbotron  shadow-lg p-3 mb-5 mt-4 bg-white rounded text-center"
+    >
+      <h1 class="display-4 animated infinite pulse">Zoofice</h1>
+      <p class="lead">
+        Create your virtual office background for online chat.
+      </p>
+      <img
+        src="https://i.snipboard.io/8i0b3B.jpg"
+        class=" m-3  shadow rounded mx-auto img-fluid mb-5 bg-white"
+        alt="datacamp"
+      />
+      <br />
+      <!--       <hr class="my-4" /> -->
+      <!--       <p>
+        It uses utility classes for typography and spacing to space content out
+        within the larger container.
+      </p> -->
+      <a class="btn btn-primary btn-lg" href="#" role="button"
+        >Fill the form and get your office</a
+      >
+
+      <form
+        id="form"
+        onsubmit="(e)=>{
+                                                               e.preventDefault();
+                                                               alert('sadsa');
+                                                               }"
+        class="mt-5"
+      >
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault01">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationDefault01"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault02">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationDefault02"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <!--           <div class="col-md-6 mb-3">
+            <label for="validationDefaultUsername">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefaultUsername"
+                aria-describedby="inputGroupPrepend2"
+                required
+              />
+            </div>
+          </div> -->
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault03">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationDefault03"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault04">State</label>
+            <select class="custom-select" id="validationDefault04" required>
+              <option selected disabled value="">Select Office</option>
+              <option>1- Startup</option>
+              <option>2- Luxury</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationDefault05">Zip</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationDefault05"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01"
+                >Upload</span
+              >
+            </div>
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01"
+              />
+              <label class="custom-file-label" for="inputGroupFile01"
+                >Choose file</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="invalidCheck2"
+              required
+            />
+            <label class="form-check-label" for="invalidCheck2">
+              Agree to terms and conditions
+            </label>
+          </div>
+        </div>
+
+        <button
+          id="button"
+          class="btn btn-primary"
+          type="submit"
+          onclick="(e)=>{
+                         e.preventDefault();
+                         alert('sad')
+                         }"
+        >
+          Submit form
+        </button>
+      </form>
+
+      <div
+        class="g-recaptcha form-row"
+        data-sitekey="6Ld3UucUAAAAAHU0kwgSXBn4WhcRW9-3vTj4wnzg"
+      ></div>
+      <script>
+        function myFunction() {
+          // alert("s");
+          console.log(grecaptcha.getResponse());
+          var asd=grecaptcha.getResponse();
+          fetch("https://zoo.dev.compec.org/submit?&"+"recaptcha="+asd).then((r)=>r.json()).then((s)=>{console.log(s)
+                                                                                                      grecaptcha.reset()})
+        }
+//         &entry.1037397471=asd
+//         
+// https://docs.google.com/forms/d/e/1FAIpQLSdViXniOwz_Y9Vge-eDZRQ-j1RAZG4PZ75GRv5whTjcz_oJUQ/formResponse?usp=pp_url&entry.1037397471=asd&submit=Submit
+        
+        // http://datacampapi.dev.compec.org/datacampkayit?usp=pp_url&entry.1140033869=asd&entry.1139239116=asdsa&entry.1454259181=emindeniz99@gmail.com&entry.1994037736=5364433684&entry.1620204294=student&entry.226554650=Bo%C4%9Fazi%C3%A7i%20%C3%9Cniversitesi&entry.1614710481=emin.deniz@boun.edu.tr&entry.201698158=cmpe&entry.1809406643=&entry.958475025=&entry.358539857=2&entry.815516015=a&entry.1629977891=a&entry.857178308=&entry.962990275=a&entry.1465925335=false&submit=Submit&recaptcha=03AHaCkAacPD7w6uTmdv2VgLEH2dtUX6GPRbmalZDk4o20P7TGgqFne_Z4o8H_s3bbBxddOi7Y4oeZ2smIa-KdsYjmw1CM1yQsk5pavyYh-v3CUlhY14wrBGC2FH0oH-uoyeNR515Ascw5O2kTnPFW40mgkHlFwB3BFRtAxDLkI21rWpHqCYVTvNl0IBWDinqFrLvWfYRP55RzX2A7z8kpY_mna8S7V4ayOKYch3zGoFPryMmsFbwsSsSjMlgm2QTWkDcmun9V_iKd0yvApbyF59ZzBHdtXLPIilL5iDvVRhkaBwqiJxJePUcV_BNhcOao46V8oCrhJpJ9fExeBfa3UFcOtbCUUhQQY1ReI9DdynlJ9hsV0lZ0z8WRaokLOSDRE4XnPAV2lNmhyhjbRR70_EblX8AHGfaEqnmFywj_JOF-8O7yS4EG8PM
+        
+      </script>
+      <button onclick="myFunction()">Click me</button>
+    </div>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+  <footer>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function() {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/5e89b8ac69e9320caac065ec/default";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+  </footer>
+</html>
