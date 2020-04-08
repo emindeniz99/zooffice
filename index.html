@@ -62,25 +62,17 @@
         It uses utility classes for typography and spacing to space content out
         within the larger container.
       </p> -->
-      <a class="btn btn-primary btn-lg" href="#" role="button"
+      <a class="btn btn-primary btn-lg" href="#buy" role="button"
         >Fill the form and get your office</a
       >
-
-      <form
-        id="form"
-        onsubmit="(e)=>{
-                                                               e.preventDefault();
-                                                               alert('sadsa');
-                                                               }"
-        class="mt-5"
-      >
+      <div id="buy" class="mt-5">
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="validationDefault01">Name</label>
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="name"
               placeholder="Name"
               required
             />
@@ -90,7 +82,7 @@
             <input
               type="text"
               class="form-control"
-              id="validationDefault02"
+              id="mail"
               placeholder="Email"
               required
             />
@@ -114,23 +106,18 @@
 
         <div class="form-row">
           <div class="col-md-6 mb-3">
-            <label for="validationDefault03">City</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationDefault03"
-              required
-            />
+            <label for="validationDefault03">phone</label>
+            <input type="text" class="form-control" id="phone" required />
           </div>
-          <div class="col-md-6 mb-3">
+          <!--           <div class="col-md-6 mb-3">
             <label for="validationDefault04">State</label>
             <select class="custom-select" id="validationDefault04" required>
               <option selected disabled value="">Select Office</option>
               <option>1- Startup</option>
               <option>2- Luxury</option>
             </select>
-          </div>
-          <div class="col-md-3 mb-3">
+          </div> -->
+          <!--           <div class="col-md-3 mb-3">
             <label for="validationDefault05">Zip</label>
             <input
               type="text"
@@ -138,78 +125,116 @@
               id="validationDefault05"
               required
             />
-          </div>
+          </div> -->
         </div>
         <div class="form-row">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon01"
-                >Upload</span
-              >
-            </div>
-            <div class="custom-file">
-              <input
-                type="file"
-                class="custom-file-input"
-                id="inputGroupFile01"
-                aria-describedby="inputGroupFileAddon01"
-              />
-              <label class="custom-file-label" for="inputGroupFile01"
-                >Choose file</label
-              >
-            </div>
-          </div>
+          <button id="upload_widget" class="cloudinary-button">
+            Upload files
+          </button>
+
+          <script
+            src="https://widget.cloudinary.com/v2.0/global/all.js"
+            type="text/javascript"
+          ></script>
+
+          <script type="text/javascript">
+            var myWidget = cloudinary.createUploadWidget(
+              {
+                cloudName: "zooffice",
+                uploadPreset: "q7rkjkmi",
+                multiple: false
+              },
+              (error, result) => {
+                if (!error && result && result.event === "success") {
+                  console.log("Done! Here is the image info: ", result.info);
+                  photolink = result.info.url;
+                }
+              }
+            );
+
+            document.getElementById("upload_widget").addEventListener(
+              "click",
+              function() {
+                myWidget.open();
+              },
+              false
+            );
+          </script>
         </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="invalidCheck2"
-              required
-            />
-            <label class="form-check-label" for="invalidCheck2">
-              Agree to terms and conditions
-            </label>
-          </div>
-        </div>
+        <div
+          class="g-recaptcha form-row"
+          data-sitekey="6Ld3UucUAAAAAHU0kwgSXBn4WhcRW9-3vTj4wnzg"
+        ></div>
+        <script>
+          function senddata() {
+                      // alert("s");
+                      console.log(grecaptcha.getResponse());
+                      var asd = grecaptcha.getResponse();
+                      var link="https://zoo.dev.compec.org/submit?&" + "recaptcha=" + asd;
+                      link+="&entry.1037397471="+getval("name")
+                       link+="&entry.1728756840="+getval("mail")
+                       link+="&entry.1666387507="+getval("phone")
+                       link+="&entry.2122341629="+photolink
+
+
+                      console.log(link)
+
+                      fetch(link)
+                        .then(r => r.json())
+                        .then(s => {
+                          console.log(s);
+                        
+                    
+                          grecaptcha.reset();
+ 
+                        if(s.responseCode=="OK"){
+                          document.getElementById("payment").style.display="block";
+                          console.log(s.requestdata)
+                        }else if(s.responseCode=="ERROR"){
+                          alert(s.responseDesc)
+                        }
+                      
+                      });
+                    }
+                    var photolink=""
+                    const getval=(id)=>{
+                      return document.getElementById(id).value;
+                    }
+
+
+                    //         &entry.1037397471=asd
+                    //
+                    // https://docs.google.com/forms/d/e/1FAIpQLSdViXniOwz_Y9Vge-eDZRQ-j1RAZG4PZ75GRv5whTjcz_oJUQ/formResponse?usp=pp_url&entry.1037397471=asd&submit=Submit
+
+                    // http://datacampapi.dev.compec.org/datacampkayit?usp=pp_url&entry.1140033869=asd&entry.1139239116=asdsa&entry.1454259181=emindeniz99@gmail.com&entry.1994037736=5364433684&entry.1620204294=student&entry.226554650=Bo%C4%9Fazi%C3%A7i%20%C3%9Cniversitesi&entry.1614710481=emin.deniz@boun.edu.tr&entry.201698158=cmpe&entry.1809406643=&entry.958475025=&entry.358539857=2&entry.815516015=a&entry.1629977891=a&entry.857178308=&entry.962990275=a&entry.1465925335=false&submit=Submit&recaptcha=03AHaCkAacPD7w6uTmdv2VgLEH2dtUX6GPRbmalZDk4o20P7TGgqFne_Z4o8H_s3bbBxddOi7Y4oeZ2smIa-KdsYjmw1CM1yQsk5pavyYh-v3CUlhY14wrBGC2FH0oH-uoyeNR515Ascw5O2kTnPFW40mgkHlFwB3BFRtAxDLkI21rWpHqCYVTvNl0IBWDinqFrLvWfYRP55RzX2A7z8kpY_mna8S7V4ayOKYch3zGoFPryMmsFbwsSsSjMlgm2QTWkDcmun9V_iKd0yvApbyF59ZzBHdtXLPIilL5iDvVRhkaBwqiJxJePUcV_BNhcOao46V8oCrhJpJ9fExeBfa3UFcOtbCUUhQQY1ReI9DdynlJ9hsV0lZ0z8WRaokLOSDRE4XnPAV2lNmhyhjbRR70_EblX8AHGfaEqnmFywj_JOF-8O7yS4EG8PM
+        </script>
 
         <button
           id="button"
-          class="btn btn-primary"
+          class="btn btn-primary mt-3"
           type="submit"
-          onclick="(e)=>{
-                         e.preventDefault();
-                         alert('sad')
-                         }"
+          onclick="senddata()"
         >
           Submit form
         </button>
-      </form>
-
-      <div
-        class="g-recaptcha form-row"
-        data-sitekey="6Ld3UucUAAAAAHU0kwgSXBn4WhcRW9-3vTj4wnzg"
-      ></div>
-      <script>
-        function myFunction() {
-          // alert("s");
-          console.log(grecaptcha.getResponse());
-          var asd=grecaptcha.getResponse();
-          fetch("https://zoo.dev.compec.org/submit?&"+"recaptcha="+asd).then((r)=>r.json()).then((s)=>{console.log(s)
-                                                                                                      grecaptcha.reset()})
-        }
-//         &entry.1037397471=asd
-//         
-// https://docs.google.com/forms/d/e/1FAIpQLSdViXniOwz_Y9Vge-eDZRQ-j1RAZG4PZ75GRv5whTjcz_oJUQ/formResponse?usp=pp_url&entry.1037397471=asd&submit=Submit
-        
-        // http://datacampapi.dev.compec.org/datacampkayit?usp=pp_url&entry.1140033869=asd&entry.1139239116=asdsa&entry.1454259181=emindeniz99@gmail.com&entry.1994037736=5364433684&entry.1620204294=student&entry.226554650=Bo%C4%9Fazi%C3%A7i%20%C3%9Cniversitesi&entry.1614710481=emin.deniz@boun.edu.tr&entry.201698158=cmpe&entry.1809406643=&entry.958475025=&entry.358539857=2&entry.815516015=a&entry.1629977891=a&entry.857178308=&entry.962990275=a&entry.1465925335=false&submit=Submit&recaptcha=03AHaCkAacPD7w6uTmdv2VgLEH2dtUX6GPRbmalZDk4o20P7TGgqFne_Z4o8H_s3bbBxddOi7Y4oeZ2smIa-KdsYjmw1CM1yQsk5pavyYh-v3CUlhY14wrBGC2FH0oH-uoyeNR515Ascw5O2kTnPFW40mgkHlFwB3BFRtAxDLkI21rWpHqCYVTvNl0IBWDinqFrLvWfYRP55RzX2A7z8kpY_mna8S7V4ayOKYch3zGoFPryMmsFbwsSsSjMlgm2QTWkDcmun9V_iKd0yvApbyF59ZzBHdtXLPIilL5iDvVRhkaBwqiJxJePUcV_BNhcOao46V8oCrhJpJ9fExeBfa3UFcOtbCUUhQQY1ReI9DdynlJ9hsV0lZ0z8WRaokLOSDRE4XnPAV2lNmhyhjbRR70_EblX8AHGfaEqnmFywj_JOF-8O7yS4EG8PM
-        
-      </script>
-      <button onclick="myFunction()">Click me</button>
+      </div>
+      
+      <div id="payment" style="display:none;">
+        <h3>
+          <p>
+            
+          </p>
+          Please Make Payment
+          ödemelinki
+          ödeme yaparken adrese mail adresinizi yazınız
+          24 saat içerisinde size ulaştıracağız, 
+          bize her zaman sitemizde yer alan live chattan ulaşabilirsiniz
+        </h3>
+      </div>
+      
+      
+      
     </div>
-
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
