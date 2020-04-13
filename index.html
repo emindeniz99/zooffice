@@ -8,6 +8,8 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 		/>
+		<link rel="icon" href="./sosyal medya.png" />
+
 		<meta
 			name="description"
 			content="Virtual backgrounds for your online meetings with your own brand logo!"
@@ -55,6 +57,20 @@
 				}
 			}
 		</style>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=UA-163541683-1"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || []
+			function gtag() {
+				dataLayer.push(arguments)
+			}
+			gtag("js", new Date())
+
+			gtag("config", "UA-163541683-1")
+		</script>
 	</head>
 	<body class="container">
 		<div
@@ -289,11 +305,17 @@
 						link += "&entry.2122341629=" + photolink
 
 						console.log(link)
-            
-            if(!getval("name")||!photolink||(!getval("mail")&&!getval("phone"))){
-              alert("Please, fill the form to deliver item to you")
-              return
-            }
+
+						if (
+							!getval("name") ||
+							!photolink ||
+							(!getval("mail") && !getval("phone"))
+						) {
+							alert(
+								"Please, fill the form to deliver item to you"
+							)
+							return
+						}
 
 						fetch(link)
 							.then((r) => r.json())
@@ -338,8 +360,9 @@
 				<h3>
 					<p></p>
 					Please contact us from live chat for payment and special
-          offer. <br> Your virtual background will be delivered in 1 days.
-         <br> Don't hesitate to contact us 😊
+					offer. <br />
+					Your virtual background will be delivered in 1 days. <br />
+					Don't hesitate to contact us 😊
 					<!-- Please Make Payment
           ödemelinki
           ödeme yaparken adrese mail adresinizi yazınız
@@ -350,6 +373,17 @@
 		</div>
 		<!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
+		<div class="mb-3 text-center">
+			<a href="https://www.instagram.com/zooffice.store/">
+				<img
+					style="max-height: 5vh;"
+					src="./instagram-square-brands.svg"
+					alt="Kiwi standing on oval"
+				/>
+				<span>Zooffice.Store</span>
+			</a>
+		</div>
+
 		<div
 			class="glitchButton"
 			style="position: fixed; top: 20px; right: 20px;"
