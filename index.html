@@ -8,7 +8,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 		/>
-		<link rel="icon" href="./sosyal medya.png" />
+		<link rel="icon" href="./websiteicon.png" />
 
 		<meta
 			name="description"
@@ -29,6 +29,12 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
 		/>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+
 		<script
 			src="https://www.google.com/recaptcha/api.js"
 			async
@@ -74,6 +80,7 @@
 	</head>
 	<body class="container">
 		<div
+			style="background: #e9dcba !important; color: #373e58;"
 			class="jumbotron shadow-lg p-3 mb-5 mt-4 bg-white rounded text-center"
 		>
 			<h1 class="display-4 animated infinite pulse">Zooffice</h1>
@@ -105,7 +112,7 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img
-							src="./03b.png"
+							src="./03a.png"
 							class="d-block w-100 rounded mx-auto img-fluid bg-white"
 							alt="Zooffice"
 						/>
@@ -116,7 +123,7 @@
 					</div>
 					<div class="carousel-item">
 						<img
-							src="./monochromatic-v3.jpg"
+							src="./03b.png"
 							class="d-block w-100 rounded mx-auto img-fluid bg-white"
 							alt="Zooffice"
 						/>
@@ -127,7 +134,7 @@
 					</div>
 					<div class="carousel-item">
 						<img
-							src="./03b.png"
+							src="./03c.png"
 							class="d-block w-100 rounded mx-auto img-fluid bg-white"
 							alt="Zooffice"
 						/>
@@ -172,11 +179,15 @@
 				backgrounds.
 			</p>
 
-			<a class="btn btn-primary btn-lg" href="#buy" role="button"
-				>Fill the form and get your office</a
+			<a
+				style="background-color: #ab8d45; border-color: #ab8d45;"
+				class="btn btn-primary btn-lg"
+				href="#buy"
+				role="button"
+				>Fill the form and get your office!</a
 			>
 			<div id="buy" class="mt-5">
-				<div class="form-row">
+				<div class="form-row justify-content-center">
 					<div class="col-md-6 mb-3">
 						<label for="validationDefault01">Name</label>
 						<input
@@ -187,8 +198,11 @@
 							required
 						/>
 					</div>
+				</div>
+
+				<div class="form-row justify-content-center">
 					<div class="col-md-6 mb-3">
-						<label for="validationDefault02">Email</label>
+						<label for="validationDefault02">E-Mail</label>
 						<input
 							type="text"
 							class="form-control"
@@ -197,26 +211,11 @@
 							required
 						/>
 					</div>
-					<!--           <div class="col-md-6 mb-3">
-            <label for="validationDefaultUsername">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend2">@</span>
-              </div>
-              <input
-                type="text"
-                class="form-control"
-                id="validationDefaultUsername"
-                aria-describedby="inputGroupPrepend2"
-                required
-              />
-            </div>
-          </div> -->
 				</div>
 
-				<div class="form-row">
+				<div class="form-row justify-content-center">
 					<div class="col-md-6 mb-3">
-						<label for="validationDefault03">Phone</label>
+						<label for="validationDefault03">Phone Number</label>
 						<input
 							type="text"
 							class="form-control"
@@ -225,27 +224,17 @@
 							required
 						/>
 					</div>
-					<!--           <div class="col-md-6 mb-3">
-            <label for="validationDefault04">State</label>
-            <select class="custom-select" id="validationDefault04" required>
-              <option selected disabled value="">Select Office</option>
-              <option>1- Startup</option>
-              <option>2- Luxury</option>
-            </select>
-          </div> -->
-					<!--           <div class="col-md-3 mb-3">
-            <label for="validationDefault05">Zip</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationDefault05"
-              required
-            />
-          </div> -->
 				</div>
-				<div class="form-row">
-					<button id="upload_widget" class="cloudinary-button">
-						Upload logo
+				<div class="form-row justify-content-center">
+					<button
+						id="upload_widget"
+						style="
+							background-color: #ab8d45;
+							border-color: #ab8d45;
+						"
+						class="cloudinary-button"
+					>
+						Upload Logo
 					</button>
 
 					<script
@@ -287,7 +276,7 @@
 					</script>
 				</div>
 				<div
-					class="g-recaptcha form-row mt-3"
+					class="g-recaptcha form-row mt-3 justify-content-center"
 					data-sitekey="6Ld3UucUAAAAAHU0kwgSXBn4WhcRW9-3vTj4wnzg"
 				></div>
 				<script>
@@ -347,12 +336,13 @@
 				</script>
 
 				<button
+					style="background-color: #ab8d45; border-color: #ab8d45;"
 					id="button"
 					class="btn btn-primary mt-3"
 					type="submit"
 					onclick="senddata()"
 				>
-					Submit form
+					Get Your Image!
 				</button>
 			</div>
 
@@ -374,13 +364,13 @@
 		<!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
 		<div class="mb-3 text-center">
-			<a href="https://www.instagram.com/zooffice.store/">
-				<img
-					style="max-height: 5vh;"
-					src="./instagram-square-brands.svg"
-					alt="Kiwi standing on oval"
-				/>
-				<span>Zooffice.Store</span>
+			<a
+				style="color: #730d0b;"
+				href="https://www.instagram.com/zooffice.store/"
+			>
+				<i class="fa fa-instagram"></i>
+				<span>Follow us!</span>
+				<div>@zooffice.store</div>
 			</a>
 		</div>
 
